@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93108410-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<title>Category-Aware Image Exploration</title>
+
+
+
+
+  <style>
+h1 {
+  font-size: 24pt;
+}
+
+p {
+  line-height: 180%;
+  text-align: justify;
+  text-indent: 1em;
+}
+
+li {
+  line-height: 180%;
+}
+
+#header,
+#main {
+  width: 700px;
+  margin: 24px auto;
+}
+
+#header {
+  text-align: center;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 48px;
+}
+
+#authors,
+#publication {
+  margin: 8px 0px;
+}
+
+.images > div {
+  float: left;
+  margin-left: 8px;
+  width: 342px;
+  height: 280;
+  text-align:center;
+  font-size: 11pt;
+}
+
+.images > div:first-child {
+  margin-left: 0px;
+}
+
+.images img {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.images2 > div {
+float: left;
+margin-left: 8px;
+width: 342px;
+height: 370px;
+text-align:center;
+font-size: 11pt;
+}
+
+.images2 > div:first-child {
+margin-left: 0px;
+}
+
+.images2 img {
+width: 100%;
+margin-bottom: 4px;
+}
+
+.paper {
+  font-weight: bold;
+}
+  </style></head><body>
+<br>
+<a href="index-j.html">[Japanese]</a>
+<hr>
+<div id="header">
+<h1>Manipulating Bilevel Feature Space
+<br>for Category-Aware Image Exploration
+</h1>
+<!--div id="publication"--></div>
+<div id="main">
+<h2>Introduction</h2>
+<p>
+Recent development of web infrastructure has resulted in the rapid increase in the number of images accessible to common users of the Internet.
+Nonetheless, seeking a more effective means of retrieving specific images from the image database systems still poses a variety of interesting problems from a technical point of view.
+One of the common solutions is to encode images in a feature vector format and then plot the respective images in the feature space for estimating the similarity between them. On the other hand,
+we usually have our own categorization of the images and try to rearrange the images in the feature space to best meet our expectations.
+Nonetheless, editing local configuration of the image feature space is not still sufficient for image exploration and thus new high-level operations for organizing the overall categorization are required as shown in Figure 1.
+This paper presents an approach to manipulating both the local and global arrangements of images by projecting the overall feature space onto the 2D screen space as shown in Figure 2.
+</p>
+<div class="images">
+<div><img src="images/motivation-e.png" alt="motivation"><br>
+Figure 1. Gap between application categoris and user categories<br>
+</div>
+<div><img alt="after" src="images/keyidea-e.png"><br>
+Figure 2. The manipulation scheme<br>
+<br>
+<br>
+</div>
+</div>
+<br>
+<h2>Method</h2>
+<p>
+This paper presents an approach to manipulating both the local and global arrangements of images by projecting the overall feature space onto the 2D screen space.
+For this purpose,
+we incorporated bilevel feature space representation so that we can associate the global categories and local features of the images with the upper- and lower-level graph structures, respectively.
+Here, the upper-level graph characterizes the relationships among the underlying image categories extracted from the bag-of-features model,
+while the lower-level graph shows local closeness between a pair of images within the same category.<br>
+</p>
+<div><img src="images/method-e.png" alt="method" width="700"><br>
+</div>
+<center>Figure 3. Method overview<br>
+</center>
+<br>
+<p>
+Feature space manipulation is accomplished by updating the distance among vi-sual word nodes and image nodes in the two-layered graph we constructed.
+In practice, with the local operations we basically update the lengths of edges incident to image nodes,
+so that we can manually control the correlation among a specific set of images to make them either closer to or further from each other as shown in (a).
+On the other hand,
+the global operations enable us to adjust the lengths of edges between visual word nodes and thus modify the image categorization by increasing/decreasing the correlation between particular pairs of categories as shown in (b). <br>
+</p>
+<br>
+<div class="images2">
+<div><img src="images/local.png" alt="local"><br>
+(a) Local graph manipulation<br>
+</div>
+<div><img src="images/global.png" alt="global"><br>
+(b) Global graph manipulation<br>
+</div>
+</div>
+<br>
+<h2>Results</h2>
+<p>
+Results images show how we can manipulate the relative positions of images using the proposed approach. Here, global manipulation allows us to edit the closeness between image categories on the screen space,
+while local manipulation basically controls the distances between images within each category.
+In our system, different background colors are assigned to the images by referring to their primary categories while those in the same category are tied with edges of the same color.
+This color-based rendering scheme gives us a perceptually plausible guide to identify the images of the same category, and further helps us perform category-aware manipulation of the entire feature space as well as local manipulation of image arrangement.<br>
+</p>
+<br>
+<div class="images">
+<div><img src="images/result-local-positive-before.png" alt="before"><br>
+(a)　Before</div>
+<div><img src="images/result-local-positive-after.png" alt="after"><br>
+(b)　After<br>
+<br>
+</div>
+</div>
+<br>
+Result 1. Local attractive manipulation<br>
+<br>
+<div class="images">
+<div><img src="images/result-local-negative-before.png" alt="before"><br>
+(a)　Before</div>
+<div><img src="images/result-local-negative-after.png" alt="after"><br>
+(b)　After<br>
+<br>
+</div>
+</div>
+<br>
+<br>
+Result 2. Local repulsive manipulation<br>
+<br>
+<div class="images">
+<div><img src="images/result-global-positive-before.png" alt="before"><br>
+(a)　Before</div>
+<div><img src="images/result-global-positive-after.png" alt="after"><br>
+(b)　After<br>
+<br>
+</div>
+</div>
+<br>
+Result 3. Global attractive manipulation<br>
+<br>
+<div class="images">
+<div><img src="images/result-global-negative-before.png" alt="before"><br>
+(a)　Before</div>
+<div><img src="images/result-global-negative-after.png" alt="after"><br>
+(b)　After<br>
+<br>
+</div>
+</div>
+<br>
+<br>
+Result 4. Global repulsive manipulation<br>
+<br>
+<br style="clear: both;">
+<h2>Paper</h2>
+<div>Kazuyo Mizuno, Hsiang-Yun Wu, and Shigeo Takahashi: "Manipulating Bilevel Feature Space for Category-Aware Image Exploration," in Proceedings of the 7th IEEE Pacific Visualization Symposium (PacificVis 2014),
+(at Yokohma, Japan), pp. ??-??, 2014.
+<a href="../../paper/2014-pvis-bilevel.pdf">[PDF]</a>,
+<a href="https://youtu.be/foQdQoeL1fI">[Video] </a>
+</div>
+</div>
+<hr>
+</div>
+
+</body></html>
